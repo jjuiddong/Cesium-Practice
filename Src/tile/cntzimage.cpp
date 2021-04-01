@@ -132,7 +132,6 @@ bool cCntZImage::ReadTiles(bool zPart, double maxZErrorInFile,
 // read cnt tile
 bool cCntZImage::ReadCntTile(std::ifstream &ifs, int i0, int i1, int j0, int j1)
 {
-
 	return true;
 }
 
@@ -141,6 +140,120 @@ bool cCntZImage::ReadCntTile(std::ifstream &ifs, int i0, int i1, int j0, int j1)
 bool cCntZImage::ReadZTile(std::ifstream &ifs, int i0, int i1, int j0, int j1,
 	double maxZErrorInFile, float maxZInImg)
 {
+	//Byte* ptr = *ppByte;
+	int numPixel = 0;
+
+	BYTE comprFlag;// = *ptr++;
+	ifs.read((char*)&comprFlag, sizeof(comprFlag));
+	int bits67 = comprFlag >> 6;
+	comprFlag &= 63;
+
+	//if (comprFlag == 2)    // entire zTile is constant 0 (if valid or invalid doesn't matter)
+	//{
+	//	for (int i = i0; i < i1; i++)
+	//	{
+	//		CntZ* dstPtr = getData() + i * width_ + j0;
+	//		for (int j = j0; j < j1; j++)
+	//		{
+	//			if (dstPtr->cnt > 0)
+	//				dstPtr->z = 0;
+	//			dstPtr++;
+	//		}
+	//	}
+
+	//	*ppByte = ptr;
+	//	return true;
+	//}
+
+	//if (comprFlag > 3)
+	//	return false;
+
+	//if (comprFlag == 0)
+	//{
+	//	// read z's as flt arr uncompressed
+	//	const float* srcPtr = (const float*)ptr;
+
+	//	for (int i = i0; i < i1; i++)
+	//	{
+	//		CntZ* dstPtr = getData() + i * width_ + j0;
+	//		for (int j = j0; j < j1; j++)
+	//		{
+	//			if (dstPtr->cnt > 0)
+	//			{
+	//				dstPtr->z = *srcPtr++;
+	//				SWAP_4(dstPtr->z);
+	//				numPixel++;
+	//			}
+	//			dstPtr++;
+	//		}
+	//	}
+
+	//	ptr += numPixel * sizeof(float);
+	//}
+	//else
+	//{
+	//	// read z's as int arr bit stuffed
+	//	int n = (bits67 == 0) ? 4 : 3 - bits67;
+	//	float offset = 0;
+	//	if (!readFlt(&ptr, offset, n))
+	//		return false;
+
+	//	if (comprFlag == 3)
+	//	{
+	//		for (int i = i0; i < i1; i++)
+	//		{
+	//			CntZ* dstPtr = getData() + i * width_ + j0;
+	//			for (int j = j0; j < j1; j++)
+	//			{
+	//				if (dstPtr->cnt > 0)
+	//					dstPtr->z = offset;
+	//				dstPtr++;
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//		vector<unsigned int>& dataVec = m_tmpDataVec;
+	//		BitStuffer bitStuffer;
+	//		if (!bitStuffer.read(&ptr, dataVec))
+	//			return false;
+
+	//		double invScale = 2 * maxZErrorInFile;
+	//		unsigned int* srcPtr = &dataVec[0];
+
+	//		if (m_bDecoderCanIgnoreMask)
+	//		{
+	//			for (int i = i0; i < i1; i++)
+	//			{
+	//				CntZ* dstPtr = getData() + i * width_ + j0;
+	//				for (int j = j0; j < j1; j++)
+	//				{
+	//					float z = (float)(offset + *srcPtr++ * invScale);
+	//					dstPtr->z = std::min(z, maxZInImg);    // make sure we stay in the orig range
+	//					dstPtr++;
+	//				}
+	//			}
+	//		}
+	//		else
+	//		{
+	//			for (int i = i0; i < i1; i++)
+	//			{
+	//				CntZ* dstPtr = getData() + i * width_ + j0;
+	//				for (int j = j0; j < j1; j++)
+	//				{
+	//					if (dstPtr->cnt > 0)
+	//					{
+	//						float z = (float)(offset + *srcPtr++ * invScale);
+	//						dstPtr->z = std::min(z, maxZInImg);    // make sure we stay in the orig range
+	//					}
+	//					dstPtr++;
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+
+	//*ppByte = ptr;
 
 	return true;
 }
