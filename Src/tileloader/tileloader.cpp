@@ -55,8 +55,8 @@ int main()
 	//hr = URLDownloadToFileA(NULL, url10.c_str(), "tile10.bil", 0, NULL);
 
 	// google map
-	//string url10 = "https://khms1.googleapis.com/kh?v=899&hl=ko-KR&x=27&y=12&z=5";
-	//hr = URLDownloadToFileA(NULL, url10.c_str(), "tile.jpg", 0, NULL);
+	string url10 = "https://khms1.googleapis.com/kh?v=899&hl=ko-KR&x=0&y=0&z=0";
+	hr = URLDownloadToFileA(NULL, url10.c_str(), "tile.jpg", 0, NULL);
 
 	// ngii
 	//string url10 = "http://210.117.198.120:8081/o2map/services?service=WMTS&request=GetTile&version=1.0.0&layer=AIRPHOTO&style=_null&format=image/jpg&tilematrixset=NGIS_AIR&tilematrix=18&tilerow=33245&tilecol=20056";
@@ -83,7 +83,7 @@ int main()
 	//hr = URLDownloadToFileA(NULL, url.c_str(), "9-435-205.terrain", 0, NULL);
 
 	// ArcGis elevation
-	string url = "https://services.arcgisonline.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer/tile/9/435/205";
-	hr = URLDownloadToFileA(NULL, url.c_str(), "arc-9-435-205.bil", 0, NULL);
+	//string url = "https://services.arcgisonline.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer/tile/9/435/205";
+	//hr = URLDownloadToFileA(NULL, url.c_str(), "arc-9-435-205.bil", 0, NULL);
 
 }
